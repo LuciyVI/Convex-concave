@@ -1,5 +1,8 @@
 #include "Braun-Robbinson.hpp"
 
+
+
+
 using namespace boost::numeric::ublas;
 
 class Parametrs
@@ -73,7 +76,7 @@ double func_x_y(Parametrs value , std::string flag)
 
 matrix <double> Harr_init(Parametrs value, double size)
 {
-    matrix <double> H_arr(size,size);
+    matrix <double> H_arr(size+1,size+1);
     for (double i = 0; i <= size; ++i)
     {
         for (double j = 0; j <= size; ++j)
@@ -143,11 +146,11 @@ int main() {
            
 
             // std::cout<<boost::format{"%2%/%1%/%3%/%2%/%1%/%3%/%2%"}<<"{["<<eps_arr[0][j]<<"]["<<eps_arr[0+1][j]<<"]["<<eps_arr[0+2][j]<<" ]}"<<std::endl;
-            // std::cout<<boost::format{"%1$4.3f / %2$4.3f / %3$4.3f\n"}%H_arr[0][j]%H_arr[0+1][j]%H_arr[0+2][j]<<std::endl;
+             std::cout<<boost::format{"%1$4.3f / %2$4.3f / %3$4.3f\n"}%H_arr(0,j)%H_arr(0+1,j)%H_arr(0+2,j)<<std::endl;
         }
 
 
-braun_robinson(H_arr,N);
+braun_robinson(H_arr,3);
 
 return 0;
 

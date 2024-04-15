@@ -47,16 +47,13 @@ matrix<double> strategy_matrix(N+1, N+1);
             strategy_matrix(i, j) = H_arr(i,j);
         }
     };
-    for(int i=0;i <N;++i){
 
-        for(int j=0;j<N;++j){
-            std::cout<<strategy_matrix(j,i)<<std::endl;
-        }
-    }
     double eps = 0.001;
 
     matrix<double> strategy_matrix_obr(N+1,N+1);
     matrix<double> strategy_matrix_inv(N+1,N+1);
+
+
 
     permutation_matrix<std::size_t> pm(strategy_matrix.size1());
 
@@ -65,15 +62,16 @@ matrix<double> strategy_matrix(N+1, N+1);
     lu_substitute(strategy_matrix, pm, strategy_matrix_obr);
 
 
-    vector<double> u(3);
-    u(0) = 1;
-    u(1) = 1;
-    u(2) = 1;
+    vector<double> u(N+1);
     
-    vector<double> _X(3);
+   for(int i =0; i<N+1; ++i ){
+        u(i)=1;
+   }
+    
+    vector<double> _X(N+1);
     _X = prod(trans(u), strategy_matrix_obr) / inner_prod(prod(trans(u), strategy_matrix_obr), u);
-    std::cout<<"Analitic_X "<<_X<<std::endl;
-    vector<double> _Y(3);
+    // std::cout<<"Analitic_X "<<_X<<std::endl;
+    vector<double> _Y(N);
     _Y = prod(trans(strategy_matrix_obr), trans(u)) / inner_prod(prod(trans(u), strategy_matrix_obr), u);
     std::cout<<"Analitic_Y "<<_Y<<std::endl;
     double _V = 1 / inner_prod(prod(u, strategy_matrix_obr), trans(u));
