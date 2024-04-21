@@ -125,20 +125,21 @@ int main() {
            std::cout<<"Sedlo"<<sedlo<<"\n"<<std::endl;
         }else{
         };
-    matrix <double> eps_arr = Harr_init(param, N);
+    matrix <double> H_arr = Harr_init(param, N);
    
         for (int j = 0; j <= N; ++j)
         {   
            
 
             // std::cout<<boost::format{"%2%/%1%/%3%/%2%/%1%/%3%/%2%"}<<"{["<<eps_arr[0][j]<<"]["<<eps_arr[0+1][j]<<"]["<<eps_arr[0+2][j]<<" ]}"<<std::endl;
-            std::cout<<boost::format{"%1$4.3f / %2$4.3f / %3$4.3f\n"}%eps_arr(0,j)%eps_arr(0+1,j)%eps_arr(0+2,j)<<std::endl;
+            std::cout<<boost::format{"%1$4.3f / %2$4.3f / %3$4.3f\n"}%H_arr(0,j)%H_arr(0+1,j)%H_arr(0+2,j)<<std::endl;
         
         }
         std::cout<<"\n"<<std::endl;
 
-    N=3;
-    matrix<double> H_arr = Harr_init(param, N);
+    N=10;
+    std::cout<<"NOW CHANGE N\n"<<std::endl;
+    H_arr = Harr_init(param, N);
 
    
         for (int j = 0; j <= N; ++j)
@@ -146,11 +147,12 @@ int main() {
            
 
             // std::cout<<boost::format{"%2%/%1%/%3%/%2%/%1%/%3%/%2%"}<<"{["<<eps_arr[0][j]<<"]["<<eps_arr[0+1][j]<<"]["<<eps_arr[0+2][j]<<" ]}"<<std::endl;
-             std::cout<<boost::format{"%1$4.3f / %2$4.3f / %3$4.3f\n"}%H_arr(0,j)%H_arr(0+1,j)%H_arr(0+2,j)<<std::endl;
+               std::cout<<boost::format{"%1$4.3f / %2$4.3f / %3$4.3f / %4$4.3f / %5$4.3f\n"}%H_arr(0,j)%H_arr(0+1,j)%H_arr(0+2,j)%H_arr(0+3,j)%H_arr(0+4,j)<<std::endl;
         }
 
 
-braun_robinson(H_arr,3);
+
+braun_robinson(H_arr,N);
 
 return 0;
 
